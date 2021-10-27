@@ -14,16 +14,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
 
-        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
-        let displayWidth: CGFloat = self.view.frame.width
-        let displayHeight: CGFloat = self.view.frame.height
+//        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
+//        let displayWidth: CGFloat = self.view.frame.width
+//        let displayHeight: CGFloat = self.view.frame.height
 
-        tableView = UITableView(frame: CGRect(x: 0, y: barHeight, width: displayWidth, height: displayHeight - barHeight))
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        loadArticles()
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.register(ArticleCell.self, forCellReuseIdentifier: "cell")
+        tableView.rowHeight = UITableView.automaticDimension
         self.view.addSubview(tableView)
-        loadArticles()
         super.viewDidLoad()
 
     }
@@ -53,8 +54,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath)
-        cell.textLabel!.text = "\(String(describing: articles?.articles[indexPath.row].title ?? ""))"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ArticleCell
+        let currentLastItem = articles?.articles[indexPath.row]
+        cell.article = currentLastItem
         return cell
     }
 }

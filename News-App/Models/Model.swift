@@ -22,6 +22,7 @@ struct Article: Codable {
     var urlToImage: String?
     var publishedAt: String?
     var content: String?
+    var testImage: String = "https://demofree.sirv.com/nope-not-here.jpg"
 }
 
 struct Source: Codable {

@@ -11,7 +11,7 @@ class ArticleCell : UITableViewCell {
     
     var article : Article? {
         didSet {
-//            articleImage.image = article?.urlToImage
+//            articleImage.image = article?.testImage
             articleTitle.text = article?.title
             articleDescription.text = article?.description
         }
@@ -38,7 +38,12 @@ class ArticleCell : UITableViewCell {
         return lbl
     }()
         
-//    private let articleImage : UIImageView = {
+//    private let articleImage : String = {
+//
+//        if let filePath = Bundle.main.path(forResource: "imageName", ofType: "jpg"), let image = UIImage(contentsOfFile: filePath) {
+//            imageView?.contentMode = .scaleAspectFit
+//            imageView.image = image
+//        }
 //        let imgView = UIImageView(image: #imageLiteral(resourceName: "glasses"))
 //        imgView.contentMode = .scaleAspectFit
 //        imgView.clipsToBounds = true

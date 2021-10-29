@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Articles: Codable {
     var status: String
@@ -14,7 +15,7 @@ struct Articles: Codable {
 }
 
 struct Article: Codable {
-//    var source: Source
+    var source: Source?
     var author: String?
     var title: String?
     var description: String?
@@ -22,10 +23,32 @@ struct Article: Codable {
     var urlToImage: String?
     var publishedAt: String?
     var content: String?
-    var testImage: String = "https://demofree.sirv.com/nope-not-here.jpg"
 }
 
 struct Source: Codable {
-    var id: String
-    var name: String
+    var id: String?
+    var name: String?
+}
+
+extension UIImage {
+    var data: Data? {
+        if let data = self.jpegData(compressionQuality: 1.0) {
+            return data
+        } else {
+            return nil
+        }
+    }
+}
+
+extension String {
+    var image: UIImage? {
+        let url = URL(string: self)
+        let data = try? Data(contentsOf: url!)
+
+        if let imageData = data {
+            return UIImage(data: imageData)
+        } else {
+            return nil
+        }
+    }
 }

@@ -29,8 +29,6 @@ class NetworkManager {
 //                print("RESULTS: \(results)")
                 
                 DispatchQueue.main.async {
-//                    self.recipes = results.recipes
-
                     completion(results)
                 }
             } catch DecodingError.dataCorrupted(let context) {

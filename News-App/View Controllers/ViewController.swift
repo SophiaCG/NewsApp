@@ -14,10 +14,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     override func viewDidLoad() {
 
-//        let barHeight: CGFloat = UIApplication.shared.statusBarFrame.size.height
-//        let displayWidth: CGFloat = self.view.frame.width
-//        let displayHeight: CGFloat = self.view.frame.height
-
         tableView = UITableView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
         loadArticles()
         tableView.dataSource = self
@@ -35,9 +31,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             DispatchQueue.main.async {
                  self.tableView.reloadData()
             }
-
         }
-
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -57,6 +51,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ArticleCell
         let currentLastItem = articles?.articles[indexPath.row]
         cell.article = currentLastItem
+        cell.layer.masksToBounds = true
+        cell.layer.borderWidth = 1
+        let borderColor: UIColor = .systemGray6
+        cell.layer.borderColor = borderColor.cgColor
+        cell.clipsToBounds = true
+
         return cell
     }
 }

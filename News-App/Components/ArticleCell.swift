@@ -6,7 +6,10 @@
 //
 
 import UIKit
-
+/*
+    Code from: https://medium.com/@kemalekren/swift-create-custom-tableview-cell-with-programmatically-in-ios-835d3880513d
+    Adds content inside each table view cell
+*/
 class ArticleCell : UITableViewCell {
     
     var article : Article? {
@@ -17,6 +20,7 @@ class ArticleCell : UITableViewCell {
         }
     }
     
+    // Article title
     private let articleTitle : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .black
@@ -27,7 +31,7 @@ class ArticleCell : UITableViewCell {
         return lbl
     }()
     
-    
+    // Article description
     private let articleDescription : UILabel = {
         let lbl = UILabel()
         lbl.textColor = .gray
@@ -37,6 +41,7 @@ class ArticleCell : UITableViewCell {
         return lbl
     }()
         
+    // Article image
     private var articleImage : UIImageView = {
         let imgView = UIImageView()
         imgView.contentMode = .scaleAspectFill
@@ -50,10 +55,13 @@ class ArticleCell : UITableViewCell {
         addSubview(articleTitle)
         addSubview(articleDescription)
         
+        // Article image modifications
         articleImage.anchor(top: topAnchor, left: articleTitle.rightAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 5, paddingRight: 0, width: 125, height: 100, enableInsets: false)
         
+        // Article title modifications
         articleTitle.anchor(top: topAnchor, left: leftAnchor, bottom: articleDescription.topAnchor, right: articleImage.leftAnchor, paddingTop: 10, paddingLeft: 15, paddingBottom: 0, paddingRight: 15, width: UIScreen.main.bounds.width, height: 0, enableInsets: false)
         
+        // Article description modifications
         articleDescription.anchor(top: articleTitle.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: articleImage.leftAnchor, paddingTop: 0, paddingLeft: 15, paddingBottom: 5, paddingRight: 15, width: UIScreen.main.bounds.width, height: 0, enableInsets: false)
     
     }

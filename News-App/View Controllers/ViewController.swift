@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: - Displays table view, modifies table view cells
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     private var tableView: UITableView!

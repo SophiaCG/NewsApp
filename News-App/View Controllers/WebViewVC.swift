@@ -11,9 +11,10 @@ import WebKit
 
 import Foundation
 import WebKit
-
-// Code from: https://betterprogramming.pub/create-a-wkwebview-programmatically-in-swift-5-fc08c8ad8708
-
+/*
+    Code from: https://betterprogramming.pub/create-a-wkwebview-programmatically-in-swift-5-fc08c8ad8708
+    Displays news content through in-app browser
+ */
 class WebViewVC: UIViewController, WKUIDelegate {
     
     var webURL: String
@@ -31,7 +32,6 @@ class WebViewVC: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupNavItem()
         let myURL = URL(string: webURL)
         let myRequest = URLRequest(url: myURL!)
         webView.load(myRequest)
@@ -39,22 +39,8 @@ class WebViewVC: UIViewController, WKUIDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNavBar()
     }
-    
-    // MARK: - Actions
-    @objc func forwardAction() {
-        if webView.canGoForward {
-            webView.goForward()
-        }
-    }
-    
-    @objc func backAction() {
-        if webView.canGoBack {
-            webView.goBack()
-        }
-    }
-    
+        
     // MARK: - Properties
     lazy var webView: WKWebView = {
         let webConfiguration = WKWebViewConfiguration()
@@ -63,10 +49,6 @@ class WebViewVC: UIViewController, WKUIDelegate {
         webView.translatesAutoresizingMaskIntoConstraints = false
         return webView
     }()
-    
-    let forwardBarItem = UIBarButtonItem(title: "Forward", style: .plain, target: self, action: #selector(forwardAction))
-    
-    let backBarItem = UIBarButtonItem(title: "Backward", style: .plain, target: self, action: #selector(backAction))
     
 }
 
@@ -87,16 +69,5 @@ extension WebViewVC {
         ])
     }
     
-    func setupNavItem() {
-        self.navigationItem.leftBarButtonItem = backBarItem
-        self.navigationItem.rightBarButtonItem = forwardBarItem
-    }
-    
-    func setupNavBar() {
-        self.navigationController?.navigationBar
-            .barTintColor = .systemBlue
-        self.navigationController?.navigationBar
-            .tintColor = .white
-    }
 }
 

@@ -7,9 +7,10 @@
 
 import Foundation
 
+//MARK: - Retrieves articles from News API
 class NetworkManager {
 
-    let apiKey = "API-KEY-HERE"
+    let apiKey = "API-KEY-HERE"     // API key from: https://newsapi.org/docs/get-started
     
     func getArticles(completion:@escaping (Articles) -> ()) {
         
